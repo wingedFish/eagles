@@ -1,0 +1,33 @@
+#* @vtlvariable name="exception" type="java.lang.Exception" *#
+<link rel="stylesheet" type="text/css" href="$assetModule.getTarget("/chongzhi/skin/chongzhi.purchase.css")" />
+<div class="w box" id="mp">
+
+    <div class="mc">
+        <div style="border:1px solid #ffccaa;background:#fffcf1;width:715px;margin-top:10px;padding:40px 40px 20px">
+            <div style="overflow:hidden;zoom:1;padding:0 0 18px 77px;width:553px;margin:0 auto ;"><b></b>
+                <ul>
+                    #if($exception)
+                        $!exception.printStackTrace()
+                        #if($!exception.class.simpleName=="NoSuchMethodException")
+                            $!response.setStatus(404)
+                            <li>抱歉，您请求的页面现在无法打开！ </li>
+                        #elseif($!exception.class.simpleName=="CannotGetJdbcConnectionException" ||$!exception.class.simpleName=="UncategorizedSQLException" ||$!exception.class.simpleName=="DataAccessResourceFailureException" )
+                            <li>数据库连接出错了! </li>
+                        #elseif($!exception.message)
+                            <li> 出错了：  $!exception.message </li>
+                        #else
+                            <li> 出错了系统错误！ </li>
+                        #end
+                    #else
+                        #showSimpleError()&nbsp
+                    #end
+                </ul>
+                <div style="padding:10px 0 10px 60px;width:490px;margin:0 auto;line-height:20px;">
+                    <a href="javascript:history.go(-1) ">返回&gt;&gt;</a>&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd ">
+    <!-- 该包下的类支持注解，表示会被当作{@code mybatis mapper}处理 配置了之后表示可以自动引入mapper类-->
+    <!--动态factory配置-->
+    <bean id="sqlSessionFactory_dynamic" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="multiDataSource"/>
+        <property name="configLocation" value="classpath:spring-config-mybatis-mapper-dynamic.xml"/>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.wingedfish.eagles.metadata.mappers.dynamic"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory_dynamic"/>
+    </bean>
+</beans>

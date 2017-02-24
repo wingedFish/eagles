@@ -1,0 +1,7 @@
+<head>
+    <title>#if($title)$title#else 无标题 #end</title>
+    <link rel="stylesheet" type="text/css" href="$!assetModule.forPath("/pop-man/201007/skin/erpbase.css").build()" media="all"/>
+    <script type="text/javascript" src="$!assetModule.forPath("/js/jquery-1.4.2.min.js").build()"></script>
+    <script type="text/javascript" src="$!assetModule.forPath("/pop-man/201007/js/pop.base.js").build()"></script>
+
+</head>

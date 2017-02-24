@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+              http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+
+        default-autowire="byName">
+
+
+    <context:component-scan base-package="com.wingedfish.eagles">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+
+    <context:property-placeholder location="classpath:important.properties,classpath:microservice_alias.properties"/>
+
+
+    <import resource="spring-config-datasource-dynamic.xml"/>
+    <import resource="spring-config-datasource-static.xml"/>
+    <import resource="spring-config-mybatis-dynamic.xml"/>
+
+
+
+    <import resource="spring-config-mybatis-mapper-dynamic.xml"/>
+    <import resource="spring-config-mybatis-mapper-static.xml"/>
+    <import resource="spring-config-mybatis-static.xml"/>
+    <import resource="spring-config-task.xml"/>
+    <import resource="spring-config-tx.xml"/>
+
+</beans>
