@@ -5,7 +5,7 @@
 
 
     <bean id="abstractDataSource" abstract="true" class="com.alibaba.druid.pool.DruidDataSource">
-        <property name="driverClassName" value="${static.jdbc.driver}"/>
+
         <!--最大连接池数量-->
         <property name="maxActive" value="15"/>
         <!--连接池初始化数量 add-->
@@ -51,6 +51,7 @@
 
 
     <bean id="masterDataSource" parent="abstractDataSource">
+        <property name="driverClassName" value="${static.jdbc.driver}"/>
         <property name="url" value="${static.master.jdbc.url}"/>
         <property name="username" value="${static.master.jdbc.username}"/>
         <property name="password" value="${static.master.jdbc.password}"/>

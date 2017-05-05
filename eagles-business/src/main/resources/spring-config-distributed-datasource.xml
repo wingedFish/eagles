@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="aDataSource" parent="abstractDataSource">
+        <property name="driverClassName" value="${static.jdbc.driver}"/>
+        <property name="url" value="${a.static.master.jdbc.url}"/>
+        <property name="username" value="${a.static.master.jdbc.username}"/>
+        <property name="password" value="${a.static.master.jdbc.password}"/>
+        <!--数据源名字-->
+        <property name="name" value="a_datasource"/>
+    </bean>
+
+    <bean id="bDataSource" parent="abstractDataSource">
+        <property name="driverClassName" value="${static.jdbc.driver}"/>
+        <property name="url" value="${b.static.master.jdbc.url}"/>
+        <property name="username" value="${b.static.master.jdbc.username}"/>
+        <property name="password" value="${b.static.master.jdbc.password}"/>
+        <!--数据源名字-->
+        <property name="name" value="b_datasource"/>
+    </bean>
+
+    <bean id="dataSourceMap" class="java.util.HashMap">
+        <constructor-arg>
+           <map>
+               <entry key="aDataSource" value="aDataSource"/>
+               <entry key="bDataSource" value="bDataSource"/>
+           </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="routingDataSource" class="com.wingedfish.eagles.datasource.RoutingDataSource">
+        <property name="targetDataSources" value="dataSourceMap"/>
+    </bean>
+
+</beans>
